@@ -1,8 +1,7 @@
 using System;
 using Random = UnityEngine.Random;
 
-namespace Revenkorg
-{
+namespace UnityTools
     public static class UnityArrayExtensions
     {
         public static void ShuffleArray(this Array array)
