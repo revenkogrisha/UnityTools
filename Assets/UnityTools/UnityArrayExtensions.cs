@@ -2,6 +2,7 @@ using System;
 using Random = UnityEngine.Random;
 
 namespace UnityTools
+{
     public static class UnityArrayExtensions
     {
         public static void ShuffleArray(this Array array)
