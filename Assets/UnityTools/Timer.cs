@@ -13,22 +13,16 @@ namespace UnityTools
 
         public Action OnCooldownPassed;
 
-        public int TimeInSeconds
-        {
-            get { return _timeInSeconds; }
-            private set { _timeInSeconds = value; }
-        }
-
         #region MonoBehaviour
 
         private void Update()
         {
-            TimeInSeconds = GetTimeInSeconds();
+            _timeInSeconds = GetTimeInSeconds();
 
             if (IsRightCooldown())
             {
                 OnCooldownPassed?.Invoke();
-                _checkedTime = TimeInSeconds;
+                _checkedTime = _timeInSeconds;
             }
         }
 
@@ -43,8 +37,8 @@ namespace UnityTools
 
         private bool IsRightCooldown()
         {
-            if ((TimeInSeconds % _cooldown) != 0
-                || TimeInSeconds <= _checkedTime)
+            if ((_timeInSeconds % _cooldown) != 0
+                || _timeInSeconds <= _checkedTime)
                 return false;
 
             return true;
