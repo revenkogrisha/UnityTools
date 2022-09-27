@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace TwoDoors.Scene
+namespace UnityTools
 {
     public class Timer : MonoBehaviour
     {
