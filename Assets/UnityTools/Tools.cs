@@ -8,15 +8,15 @@ namespace UnityTools
     public static class Tools
     {
         /// <summary>
-        /// Invokes given methods if Collider container has component requested as generic type
+        /// Invokes given methods if Collider container has component requested as generic type.
+        /// Component of given generic type is used as argument for methods.
         /// </summary>
-        public static bool InvokeIfNotNull<T>(Collider contaiter, Action<T> handler)
+        public static bool InvokeIfNotNull<T>(Collider contaiter, params Action<T>[] handlers)
         {
             if (contaiter.GetComponent<T>() != null)
             {
-                handler?.Invoke(
-                    contaiter.GetComponent<T>()
-                    );
+                foreach (var handler in handlers)
+                    handler?.Invoke(contaiter.GetComponent<T>());
 
                 return true;
             }
@@ -25,7 +25,7 @@ namespace UnityTools
         }
 
         /// <summary>
-        /// Invokes given methods if Collider container has component requested as generic type
+        /// Invokes given methods if Collider container has component requested as generic type.
         /// </summary>
         public static bool InvokeIfNotNull<T>(Collider contaiter, params Action[] handlers)
         {
