@@ -7,7 +7,10 @@ namespace UnityTools
 {
     public static class Tools
     {
-        public static bool InvokeIfNotNull<T>(Collider2D contaiter, Action<T> handler)
+        /// <summary>
+        /// Invokes given methods if Collider container has component requested as generic type
+        /// </summary>
+        public static bool InvokeIfNotNull<T>(Collider contaiter, Action<T> handler)
         {
             if (contaiter.GetComponent<T>() != null)
             {
@@ -21,7 +24,10 @@ namespace UnityTools
             return false;
         }
 
-        public static bool InvokeIfNotNull<T>(Collider2D contaiter, params Action[] handlers)
+        /// <summary>
+        /// Invokes given methods if Collider container has component requested as generic type
+        /// </summary>
+        public static bool InvokeIfNotNull<T>(Collider contaiter, params Action[] handlers)
         {
             if (contaiter.GetComponent<T>() != null)
             {
@@ -34,12 +40,19 @@ namespace UnityTools
             return false;
         }
 
+        /// <summary>
+        /// Takes other methods via Action param and invokes each method
+        /// with given argument.
+        /// </summary>
         public static void InvokeWithSameArgs<T>(T arg, params Action<T>[] actions)
         {
             foreach (var action in actions)
                 action?.Invoke(arg);
         }
 
+        /// <summary>
+        /// Invokes given methods with given percent chance
+        /// </summary>
         public static void InvokeWithChance(int percentChance, params Action[] actions)
         {
             var random = Random.Range(0, 101);
@@ -48,6 +61,9 @@ namespace UnityTools
                     action?.Invoke();
         }
 
+        /// <summary>
+        /// Returns array with all materials attached to GameObject
+        /// </summary
         public static Material[] GetAllMaterials(GameObject gameObject)
         {
             Renderer[] renderers = gameObject.GetComponentsInChildren<Renderer>();
