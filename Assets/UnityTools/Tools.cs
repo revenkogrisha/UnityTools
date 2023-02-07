@@ -13,15 +13,13 @@ namespace UnityTools
         /// </summary>
         public static bool InvokeIfNotNull<T>(Collider container, params Action<T>[] handlers)
         {
-            if (container.GetComponent<T>() != null)
-            {
+            var component = container.GetComponent<T>();
+            var isNotComponentNull = component != null;
+            if (isNotComponentNull)
                 foreach (var handler in handlers)
-                    handler?.Invoke(container.GetComponent<T>());
+                    handler?.Invoke(component);
 
-                return true;
-            }
-
-            return false;
+            return isNotComponentNull;
         }
 
         /// <summary>
@@ -29,15 +27,13 @@ namespace UnityTools
         /// </summary>
         public static bool InvokeIfNotNull<T>(Collider container, params Action[] handlers)
         {
-            if (container.GetComponent<T>() != null)
-            {
+            var component = container.GetComponent<T>();
+            var isNotComponentNull = component != null;
+            if (isNotComponentNull)
                 foreach (var handler in handlers)
                     handler?.Invoke();
 
-                return true;
-            }
-
-            return false;
+            return isNotComponentNull;
         }
 
         /// <summary>
@@ -53,12 +49,15 @@ namespace UnityTools
         /// <summary>
         /// Invokes given methods with given percent chance
         /// </summary>
-        public static void InvokeWithChance(int percentChance, params Action[] actions)
+        public static bool InvokeWithChance(int percentChance, params Action[] actions)
         {
             var random = Random.Range(0, 101);
-            if (random <= percentChance)
+            var isChanceOccured = random <= percentChance;
+            if (isChanceOccured)
                 foreach (var action in actions)
                     action?.Invoke();
+
+            return isChanceOccured;
         }
 
         /// <summary>
