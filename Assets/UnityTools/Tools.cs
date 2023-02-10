@@ -97,6 +97,62 @@ namespace UnityTools
         }
 
         /// <summary>
+        /// Invokes given methods if Collider container's parent has component requested as generic type.
+        /// </summary>
+        public static bool InvokeIfNotNullInParent<T>(Collider container, params Action<T>[] handlers)
+        {
+            var component = container.GetComponentInParent<T>();
+            var isSucceed = component != null;
+            if (isSucceed)
+                foreach (var handler in handlers)
+                    handler?.Invoke(component);
+
+            return isSucceed;
+        }
+
+        /// <summary>
+        /// Invokes given methods if Collider container's parent has component requested as generic type.
+        /// </summary>
+        public static bool InvokeIfNotNullInParent<T>(Collider container, params Action[] handlers)
+        {
+            var component = container.GetComponentInParent<T>();
+            var isSucceed = component != null;
+            if (isSucceed)
+                foreach (var handler in handlers)
+                    handler?.Invoke();
+
+            return isSucceed;
+        }
+
+        /// <summary>
+        /// Invokes given methods if Collider container's parent has component requested as generic type.
+        /// </summary>
+        public static bool InvokeIfNotNullInParent<T>(Collider2D container, params Action<T>[] handlers)
+        {
+            var component = container.GetComponentInParent<T>();
+            var isSucceed = component != null;
+            if (isSucceed)
+                foreach (var handler in handlers)
+                    handler?.Invoke(component);
+
+            return isSucceed;
+        }
+
+        /// <summary>
+        /// Invokes given methods if Collider container's parent has component requested as generic type.
+        /// </summary>
+        public static bool InvokeIfNotNullInParent<T>(Collider2D container, params Action[] handlers)
+        {
+            var component = container.GetComponentInParent<T>();
+            var isSucceed = component != null;
+            if (isSucceed)
+                foreach (var handler in handlers)
+                    handler?.Invoke();
+
+            return isSucceed;
+        }
+
+        /// <summary>
         /// Takes other methods via Action param and invokes each method
         /// with given argument.
         /// </summary>
