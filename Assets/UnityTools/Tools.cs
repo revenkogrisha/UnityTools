@@ -37,7 +37,7 @@ namespace UnityTools
         }
 
         /// <summary>
-        /// Invokes given methods if Collider container has component requested as generic type.
+        /// Invokes given methods if Collider2D container has component requested as generic type.
         /// Component of given generic type is used as argument for methods.
         /// </summary>
         public static bool InvokeIfNotNull<T>(Collider2D container, params Action<T>[] handlers)
@@ -52,7 +52,7 @@ namespace UnityTools
         }
 
         /// <summary>
-        /// Invokes given methods if Collider container has component requested as generic type.
+        /// Invokes given methods if Collider2D container has component requested as generic type.
         /// </summary>
         public static bool InvokeIfNotNull<T>(Collider2D container, params Action[] handlers)
         {
@@ -66,7 +66,7 @@ namespace UnityTools
         }
 
         /// <summary>
-        /// Invokes given methods if Collider container has component requested as generic type.
+        /// Invokes given methods if Collision container has component requested as generic type.
         /// Component of given generic type is used as argument for methods.
         /// </summary>
         public static bool InvokeIfNotNull<T>(Collision collision, params Action<T>[] handlers)
@@ -82,7 +82,7 @@ namespace UnityTools
         }
 
         /// <summary>
-        /// Invokes given methods if Collider container has component requested as generic type.
+        /// Invokes given methods if Collision container has component requested as generic type.
         /// </summary>
         public static bool InvokeIfNotNull<T>(Collision collision, params Action[] handlers)
         {
@@ -125,7 +125,7 @@ namespace UnityTools
         }
 
         /// <summary>
-        /// Invokes given methods if Collider container's parent has component requested as generic type.
+        /// Invokes given methods if Collider2D container's parent has component requested as generic type.
         /// </summary>
         public static bool InvokeIfNotNullInParent<T>(Collider2D container, params Action<T>[] handlers)
         {
@@ -139,7 +139,7 @@ namespace UnityTools
         }
 
         /// <summary>
-        /// Invokes given methods if Collider container's parent has component requested as generic type.
+        /// Invokes given methods if Collider2D container's parent has component requested as generic type.
         /// </summary>
         public static bool InvokeIfNotNullInParent<T>(Collider2D container, params Action[] handlers)
         {
@@ -153,7 +153,7 @@ namespace UnityTools
         }
 
         /// <summary>
-        /// Invokes given methods if Collider container's parent has component requested as generic type.
+        /// Invokes given methods if Collision container's parent has component requested as generic type.
         /// </summary>
         public static bool InvokeIfNotNullInParent<T>(Collision collision, params Action<T>[] handlers)
         {
@@ -168,7 +168,7 @@ namespace UnityTools
         }
 
         /// <summary>
-        /// Invokes given methods if Collider container's parent has component requested as generic type.
+        /// Invokes given methods if Collision container's parent has component requested as generic type.
         /// </summary>
         public static bool InvokeIfNotNullInParent<T>(Collision collision, params Action[] handlers)
         {
