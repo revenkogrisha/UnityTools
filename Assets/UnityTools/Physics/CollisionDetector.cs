@@ -6,20 +6,20 @@ using UnityEngine;
 /// </summary>
 public class CollisionDetector : MonoBehaviour
 {
-    public event Action<Collider> OnCollisonEnter;
-    public event Action<Collider> OnCollisonStay;
-    public event Action<Collider> OnCollisonExit;
+    public event Action<Collision> OnCollisonEnter;
+    public event Action<Collision> OnCollisonStay;
+    public event Action<Collision> OnCollisonExit;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        OnCollisonEnter?.Invoke(other);
+        OnCollisonEnter?.Invoke(collision);
     }
-    private void OnTriggerStay(Collider other)
+    private void OnCollisionStay(Collision collision)
     {
-        OnCollisonStay?.Invoke(other);
+        OnCollisonStay?.Invoke(collision);
     }
-    private void OnTriggerExit(Collider other)
+    private void OnCollisionExit(Collision collision)
     {
-        OnCollisonExit?.Invoke(other);
+        OnCollisonExit?.Invoke(collision);
     }
 }
