@@ -6,14 +6,32 @@ namespace UnityTools.Buttons
     /// Activates and disactivates GameObjects.
     /// It's also able to add reference only to one object. (Only open or only close)
     /// </summary>
-    public class OpenCloseButton : UIButton
+    public class OpenCloseService : MonoBehaviour
     {
+        [Header("Components")]
+        [SerializeField] private UIButton _button;
+
+        [Header("Settings")]
         [Tooltip("If required (Can be null; no exception)")]
         [SerializeField] private GameObject _toOpen;
         [Tooltip("If required (Can be null; no exception)")]
         [SerializeField] private GameObject _toClose;
 
-        protected override void OnClicked()
+        #region MonoBehaviour
+
+        private void OnEnable()
+        {
+            _button.OnClicked += OnClicked;
+        }
+
+        private void OnDisable()
+        {
+            _button.OnClicked -= OnClicked;
+        }
+
+        #endregion
+
+        private void OnClicked()
         {
             if (_toOpen != null)
                 _toOpen.SetActive(true);
