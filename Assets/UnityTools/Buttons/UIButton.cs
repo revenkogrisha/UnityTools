@@ -1,42 +1,44 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace UnityTools.Buttons
 {
     [RequireComponent(typeof(Button))]
-    public abstract class UIButton : MonoBehaviour
+    public sealed class UIButton : MonoBehaviour
     {
-        [Tooltip("If required (Can be null; no exception)")]
-        [SerializeField] protected AudioSource Audio;
+        [Header("Components")]
+        [SerializeField] private Button _button;
 
-        protected Button Button;
+        [Header("Audio")]
+        [Tooltip("If required (Can be null; no exception)")]
+        [SerializeField] private AudioSource _audio;
+
+        public event Action OnClicked;
 
         #region MonoBehaviour
 
-        protected void Awake()
+        private void OnEnable()
         {
-            Button = GetComponent<Button>();
+            _button.onClick.AddListener(PlaySound);
+            _button.onClick.AddListener(InvokeOnClicked);
         }
 
-        protected void OnEnable()
+        private void OnDisable()
         {
-            Button.onClick.AddListener(PlaySound);
-            Button.onClick.AddListener(OnClicked);
-        }
-
-        protected void OnDisable()
-        {
-            Button.onClick.RemoveAllListeners();
+            _button.onClick.RemoveAllListeners();
         }
 
         #endregion
 
-        protected abstract void OnClicked();
-
         private void PlaySound()
         {
-            if (Audio != null)
-                Audio.Play();
+            if (_audio == null)
+                return;
+
+            _audio.Play();
         }
+
+        private void InvokeOnClicked() => OnClicked?.Invoke();
     }
 }
