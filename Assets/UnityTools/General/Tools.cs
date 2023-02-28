@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 namespace UnityTools
@@ -203,6 +204,17 @@ namespace UnityTools
                     action?.Invoke();
 
             return isChanceOccured;
+        }
+
+        /// <summary>
+        /// Does reloading current (active) scene
+        /// </summary>
+        public static void ReloadActiveScene()
+        {
+            var activeScene = SceneManager.GetActiveScene();
+            var activeIndex = activeScene.buildIndex;
+
+            SceneManager.LoadScene(activeIndex);
         }
     }
 }
